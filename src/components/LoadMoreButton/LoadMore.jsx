@@ -1,71 +1,123 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 
 const LoadMore = () => {
   const [data, setData] = useState([]);
   const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [disabledBtn, setDisableBtn] = useState(false);
+  const [disabledBtn, setDisabledBtn] = useState(false);
+  const preloadRef = useRef(null);
+  const initialLoad = useRef(true);
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    async function fetchData() {
-      setLoading(true);
-      const limit = 20;
-      if (count >= 5) return setDisableBtn(true);
+  // Function to Fetch Data
+  const fetchData = useCallback(
+    async (isPreload = false) => {
+      if (disabledBtn || count >= 5) return setDisabledBtn(true);
+      if (!isPreload) setLoading(true);
 
       try {
+        const limit = 20;
         const url = `https://dummyjson.com/products?limit=${limit}&skip=${
-          count * limit
+          count === 0 ? 0 : count * limit
         }`;
-        const response = await fetch(url, { signal: controller.signal });
+        const response = await fetch(url);
         const result = await response.json();
 
         if (result?.products?.length) {
           setData((prev) => [...prev, ...result.products]);
         }
       } catch (err) {
-        if (!controller.signal.aborted) {
-          console.log("Error Message", err);
-        }
+        console.error("Error fetching data:", err);
       } finally {
         setLoading(false);
       }
-    }
+    },
+    [count, disabledBtn]
+  );
 
+  // Fetch data on count change
+  useEffect(() => {
+    if (initialLoad.current) {
+      initialLoad.current = false;
+      return;
+    }
     fetchData();
-    return () => controller.abort();
-  }, [count]);
+  }, [fetchData]);
+
+  // Preload next batch when hovering over the "Load More" button
+  const handlePreload = () => {
+    if (preloadRef.current || disabledBtn) return;
+    preloadRef.current = setTimeout(() => fetchData(true), 500);
+  };
+
+  // Cancel preload on mouse leave
+  const cancelPreload = () => {
+    clearTimeout(preloadRef.current);
+    preloadRef.current = null;
+  };
 
   return (
     <section
       id="load-more-data"
-      className="w-screen bg-slate-950 flex flex-col justify-center items-center gap-4 p-4"
+      style={{
+        width: "100%",
+        textAlign: "center",
+        padding: "20px",
+        backgroundColor: "#1E293B",
+        color: "white",
+      }}
     >
       <div
         id="product-container"
-        className="w-full grid grid-cols-5 gap-2 text-white"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(5, 1fr)",
+          gap: "10px",
+        }}
       >
         {data.map((item) => (
           <div
             key={item.id}
-            className="border-2 border-white flex flex-col justify-between"
+            style={{
+              border: "2px solid white",
+              padding: "10px",
+              textAlign: "center",
+            }}
           >
-            <img src={item.thumbnail} alt={item.title} />
-            <p className="text-center font-medium text-md">{item.title}</p>
+            <img
+              src={item.thumbnail}
+              alt={item.title}
+              loading="lazy"
+              style={{ width: "100%", height: "150px", objectFit: "cover" }}
+            />
+            <p>{item.title}</p>
           </div>
         ))}
       </div>
+
       <button
-        className="bg-blue-600 text-white px-4 py-2 rounded-3xl font-bold hover:bg-blue-400 hover:scale-[1.02] disabled:opacity-50 disabled:hover:scale-100 disabled:hover:bg-blue-600 transition-transform"
-        onClick={() => setCount(count + 1)}
-        disabled={disabledBtn}
+        onClick={() => setCount((prev) => prev + 1)}
+        onMouseEnter={handlePreload}
+        onMouseLeave={cancelPreload}
+        disabled={disabledBtn || loading}
+        style={{
+          marginTop: "20px",
+          padding: "10px 20px",
+          backgroundColor: disabledBtn ? "#555" : "#007BFF",
+          color: "white",
+          border: "none",
+          borderRadius: "5px",
+          cursor: disabledBtn ? "not-allowed" : "pointer",
+          transition: "0.3s",
+        }}
       >
         {loading ? "Loading..." : "Load More"}
       </button>
-      {
-        disabledBtn ? <p className="text-xl font-semibold text-gray-400">You have reach the bottom</p>: null
-      }
+
+      {disabledBtn && (
+        <p style={{ marginTop: "10px", color: "#AAA" }}>
+          You have reached the bottom
+        </p>
+      )}
     </section>
   );
 };

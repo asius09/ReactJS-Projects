@@ -5,16 +5,20 @@ import {
   Stars,
   ImageSlider,
   LoadMore,
+  QuoteMachine,
+  Sidebar,
 } from "./components";
 
 function App() {
   return (
     <>
-      <Accordion />
+      {/* <Accordion />
       <BgChanger />
       <Stars />
-      <ImageSlider />
+      <ImageSlider /> */}
       <LoadMore />
+      {/* <QuoteMachine />
+      <Sidebar /> */}
     </>
   );
 }

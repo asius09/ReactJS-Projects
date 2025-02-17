@@ -23,7 +23,7 @@ const Accordion = () => {
   };
 
   return (
-    <div className="w-screen h-screen bg-slate-950 text-white grid place-items-center">
+    <div className="w-screen min-h-screen bg-slate-950 text-white grid place-items-center">
       <div className="w-1/2 px-4 py-6 flex flex-col gap-4">
         <div className="flex justify-between items-center w-full p-4 pr-8 rounded-lg bg-white text-black">
           <button
