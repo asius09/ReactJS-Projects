@@ -1,9 +1,25 @@
-import React from "react";
-
+import React, { useState } from "react";
+import sidebarData from "./sidebarData.js";
+import MenuList from "./MenuList";
 const Sidebar = () => {
   return (
-    <aside className="absolute top-0 left-0 w-60 h-screen px-4 py-8 flex flex-col gap-4 bg-blue-600 rounded-r-2xl text-lg font-medium">
-      
+    <aside className="w-[18%] h-[90%] bg-blue-500 text-white flex flex-col fixed top-4 bottom-4 left-4 rounded-2xl px-4 py-8">
+      <ul>
+        {sidebarData && sidebarData.length
+          ? sidebarData.map((data) => {
+              return (
+                <MenuList
+                  key={data.id}
+                  id={data.id}
+                  title={data.title}
+                  icon={data.icon}
+                  path={data.path}
+                  children={data.children}
+                />
+              );
+            })
+          : null}
+      </ul>
     </aside>
   );
 };
