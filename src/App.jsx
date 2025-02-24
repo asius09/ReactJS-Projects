@@ -10,6 +10,7 @@ import {
   QrGenerator,
   Navbar,
   TabsContainer,
+  GithubSearch,
 } from "./components";
 
 function App() {
@@ -29,15 +30,16 @@ function App() {
         <div>
           <Sidebar setIsSidebarExpanded={setIsSidebarExpanded} />
         </div>
-        <section className="flex flex-col transition-all duration-300">
+        <section className="flex flex-col transition-all duration-300 gap-4">
           <Accordion />
           <BgChanger />
           <Stars />
           <ImageSlider />
           <LoadMore />
-          <QuoteMachine />
+          {/* <QuoteMachine /> */}
           <QrGenerator />
           <TabsContainer />
+          <GithubSearch />
         </section>
       </div>
     </main>

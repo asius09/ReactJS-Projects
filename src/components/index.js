@@ -9,6 +9,7 @@ import QrGenerator from "./QR Generator/QrGenerator";
 import Navbar from "./Navbar/Navbar";
 import ScrollIndicator from "./ScrollIndicator/ScrollIndicator";
 import TabsContainer from "./CustomTabs/TabsContainer";
+import GithubSearch from "./FetchGitHubProfiles/GithubSearch";
 export {
   Accordion,
   BgChanger,
@@ -21,4 +22,5 @@ export {
   Navbar,
   ScrollIndicator,
   TabsContainer,
+  GithubSearch,
 };
