@@ -1,2 +1,3 @@
 import useLocalStorage from "./useLocalStorage.jsx";
-export { useLocalStorage };
+import useGithubFetch from "./useGithubFetch.js";
+export { useLocalStorage, useGithubFetch };

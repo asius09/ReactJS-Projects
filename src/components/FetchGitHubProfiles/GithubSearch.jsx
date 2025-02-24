@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import useGithubFetch from "./useGithubFetch";
+import { useGithubFetch } from "../../Custom";
+import SearchAutoComplete from "./SearchAutoComplete.jsx";
 
 const GithubSearch = () => {
   const [input, setInput] = useState("");
   const [searchTerm, setSearchTerm] = useState("asius09");
 
   function handleChange(e) {
-    setInput(e.target.value);
+    setInput(e.target.value.trim(""));
   }
 
   function handleSearch() {
@@ -28,15 +29,18 @@ const GithubSearch = () => {
         id="search-box"
         className="w-full flex justify-center items-center gap-4 mb-6"
       >
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => handleChange(e)}
-          placeholder="Enter Username"
-          className="px-4 py-2 outline-none rounded-md bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-300 w-1/2 border border-gray-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-purple-500 transition-colors duration-300"
-        />
+        <div className="w-1/2">
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => handleChange(e)}
+            placeholder="Enter Username"
+            className="px-4 py-2 outline-none rounded-md bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-300 w-full border border-gray-300 dark:border-slate-600 focus:border-blue-500 dark:focus:border-purple-500 transition-colors duration-300 text-sm"
+          />
+          <SearchAutoComplete userInput={input} setInput={setInput} />
+        </div>
         <button
-          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-md hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer text-sm"
           onClick={handleSearch}
           disabled={loading}
         >
