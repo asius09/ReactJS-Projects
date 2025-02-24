@@ -6,7 +6,7 @@ const Stars = () => {
   return (
     <section
       id="stars-section"
-      className="w-screen h-screen bg-slate-950 flex justify-center items-center flex-col"
+      className="w-full h-screen bg-gray-100 dark:bg-slate-950 flex justify-center items-center flex-col rounded-lg"
     >
       <div id="stars" className="flex gap-2">
         {Array.from({ length: 10 }).map((_, i) =>
@@ -21,7 +21,7 @@ const Stars = () => {
           ) : (
             <i
               key={i}
-              className="ri-star-line text-slate-500 text-7xl hover:text-yellow-400"
+              className="ri-star-line text-slate-500 dark:text-gray-400 text-7xl hover:text-yellow-400"
               onMouseEnter={() => setSelected(i)}
               onMouseLeave={() => setSelected(-1)}
               onClick={() => setRating(i)}
@@ -29,7 +29,7 @@ const Stars = () => {
           )
         )}
       </div>
-      <p className="text-white text-2xl mt-4">Rating: {rating + 1}</p>
+      <p className="text-gray-900 dark:text-white text-2xl mt-4">Rating: {rating + 1}</p>
     </section>
   );
 };

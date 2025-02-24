@@ -58,66 +58,44 @@ const LoadMore = () => {
   return (
     <section
       id="load-more-data"
-      style={{
-        width: "100%",
-        textAlign: "center",
-        padding: "20px",
-        backgroundColor: "#1E293B",
-        color: "white",
-      }}
+      className="w-full h-auto bg-gray-100 dark:bg-slate-950 text-gray-900 dark:text-gray-300 rounded-lg"
     >
-      <div
-        id="product-container"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
-          gap: "10px",
-        }}
-      >
+      <div id="product-container" className="grid grid-cols-5 gap-2 py-4">
         {data.map((item) => (
           <div
             key={item.id}
-            style={{
-              border: "2px solid white",
-              padding: "10px",
-              textAlign: "center",
-            }}
+            className="border-2 border-gray-300 dark:border-slate-700 p-2 text-center rounded-lg"
           >
             <img
               src={item.thumbnail}
               alt={item.title}
               loading="lazy"
-              style={{ width: "100%", height: "150px", objectFit: "cover" }}
+              className="w-full h-32 object-cover"
             />
             <p>{item.title}</p>
           </div>
         ))}
       </div>
-
-      <button
-        onClick={() => setCount((prev) => prev + 1)}
-        onMouseEnter={handlePreload}
-        onMouseLeave={cancelPreload}
-        disabled={disabledBtn || loading}
-        style={{
-          marginTop: "20px",
-          padding: "10px 20px",
-          backgroundColor: disabledBtn ? "#555" : "#007BFF",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          cursor: disabledBtn ? "not-allowed" : "pointer",
-          transition: "0.3s",
-        }}
+      <div
+        id="load-more-btn"
+        className="w-full flex justify-center items-center"
       >
-        {loading ? "Loading..." : "Load More"}
-      </button>
+        <button
+          onClick={() => setCount((prev) => prev + 1)}
+          onMouseEnter={handlePreload}
+          onMouseLeave={cancelPreload}
+          disabled={disabledBtn || loading}
+          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed mt-4"
+        >
+          {loading ? "Loading..." : "Load More"}
+        </button>
 
-      {disabledBtn && (
-        <p style={{ marginTop: "10px", color: "#AAA" }}>
-          You have reached the bottom
-        </p>
-      )}
+        {disabledBtn && (
+          <p className="mt-2 text-gray-500 dark:text-gray-400">
+            You have reached the bottom
+          </p>
+        )}
+      </div>
     </section>
   );
 };

@@ -1,18 +1,20 @@
 import React, { useState } from "react";
 
 const BgChanger = () => {
-  const [bgColor, setBgColor] = useState("#020617");
+  const [bgColor, setBgColor] = useState("#f3f4f6"); // Default light mode background (tailwind gray-100)
   const [display, setDisplay] = useState(false);
   const [hexCode, setHexCode] = useState("");
   const [colorText, setColorText] = useState("");
   const colorOptions = [
-    { id: 1, color: "#DC2626", text: "RED" }, // Deeper red (tailwind red-600)
-    { id: 2, color: "#16A34A", text: "GREEN" }, // Richer green (tailwind green-600)
-    { id: 3, color: "#2563EB", text: "BLUE" }, // Deeper blue (tailwind blue-600)
-    { id: 4, color: "#CA8A04", text: "YELLOW" }, // Warmer yellow (tailwind yellow-600)
-    { id: 5, color: "#000000", text: "HEXCODE" }, // Pure black for hex input
-    { id: 6, color: "#DB2777", text: "RANDOM HEX" }, // Vibrant pink (tailwind pink-600)
-    { id: 7, color: "#0D9488", text: "RANDOM RGB" }, // Sophisticated teal (tailwind teal-600)
+    { id: 1, color: "#ef4444", text: "RED", textColor: "text-white" }, // Tailwind red-500
+    { id: 2, color: "#22c55e", text: "GREEN", textColor: "text-white" }, // Tailwind green-500
+    { id: 3, color: "#3b82f6", text: "BLUE", textColor: "text-white" }, // Tailwind blue-500
+    { id: 4, color: "#f59e0b", text: "YELLOW", textColor: "text-black" }, // Tailwind yellow-500
+    { id: 5, color: "#000000", text: "HEXCODE", textColor: "text-white" },
+    { id: 6, color: "#e879f9", text: "RANDOM HEX", textColor: "text-white" }, // Tailwind pink-400
+    { id: 7, color: "#6ee7b7", text: "RANDOM RGB", textColor: "text-black" }, // Tailwind teal-300
+    { id: 8, color: "#475569", text: "DARK GREY", textColor: "text-white" }, // Tailwind slate-700
+    { id: 9, color: "#cbd5e0", text: "LIGHT GREY", textColor: "text-black" }, // Tailwind slate-300
   ];
 
   const randomRGB = () => {
@@ -39,20 +41,20 @@ const BgChanger = () => {
 
   return (
     <div
-      className={`relative w-screen h-screen text-white`}
+      className={`relative w-full h-screen text-gray-900 dark:text-white rounded-xl transition-colors duration-300`}
       style={{ backgroundColor: bgColor }}
     >
       {/* input box for hexcode */}
       <div
         id="input-box"
-        className={`bg-slate-500 p-6 w-96 rounded-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
+        className={`bg-gray-100 dark:bg-slate-800 p-6 w-96 rounded-xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ${
           display ? "block" : "hidden"
-        }`}
+        } transition-colors duration-300`}
       >
         <form autoComplete="off">
           <input
             type="text"
-            className="bg-white px-4 py-2 text-black outline-none rounded-xl w-full"
+            className="bg-white dark:bg-slate-700 px-4 py-2 text-gray-900 dark:text-white outline-none rounded-xl w-full transition-colors duration-300"
             placeholder="Enter HexCode"
             id="color-input"
             value={hexCode}
@@ -61,7 +63,7 @@ const BgChanger = () => {
             autoComplete=""
           />
           <button
-            className="w-full py-2 bg-blue-500 text-white font-bold uppercase rounded-xl mt-4 hover:bg-blue-400"
+            className="w-full py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-bold uppercase rounded-xl mt-4 hover:from-blue-600 hover:to-purple-700 transition-colors duration-300"
             onClick={(e) => {
               e.preventDefault();
               setDisplay(false);
@@ -80,11 +82,11 @@ const BgChanger = () => {
         </h1>
       ) : null}
       {/* Sidebar for buttons*/}
-      <div className="absolute top-1/2 -translate-y-1/2 left-5 bg-white px-2 py-4 rounded-lg flex flex-col gap-4">
+      <div className="absolute top-1/2 -translate-y-1/2 left-5 bg-white dark:bg-slate-800 px-2 py-4 rounded-xl flex flex-col gap-4 transition-colors duration-300">
         {colorOptions.map((item) => (
           <button
-            className="rounded-xl p-2 font-bold"
-            style={{ backgroundColor: item.color }}
+            className={`rounded-xl p-2 font-bold ${item.textColor} transition-colors duration-300`}
+            style={{ backgroundColor: item.color, color: item.textColor === 'text-black' ? 'black' : 'white' }}
             key={item.id}
             onClick={() => {
               if (item.text === "HEXCODE") {
@@ -94,7 +96,14 @@ const BgChanger = () => {
                 randomHexCodeGenerator();
               } else if (item.text === "RANDOM RGB") {
                 randomRGB();
-              } else {
+              } else if (item.text === "DARK GREY") {
+                setBgColor("#334155"); // Dark grey for dark mode (tailwind slate-700)
+                setColorText("");
+              } else if (item.text === "LIGHT GREY") {
+                setBgColor("#f3f4f6"); // Light grey for light mode (tailwind gray-100)
+                setColorText("");
+              }
+              else {
                 setBgColor(item.color);
                 setColorText("");
               }

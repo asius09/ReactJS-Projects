@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import data from "./data.js";
+import Sidebar from "../Sidebar/Sidebar.jsx";
 
 const Accordion = () => {
   const [selected, setSelected] = useState(null);
@@ -23,11 +24,11 @@ const Accordion = () => {
   };
 
   return (
-    <div className="w-screen min-h-screen bg-slate-950 text-white grid place-items-center">
+    <div className="w-full min-h-screen bg-gray-100 dark:bg-slate-950 text-gray-900 dark:text-gray-300 grid place-items-center rounded-lg">
       <div className="w-1/2 px-4 py-6 flex flex-col gap-4">
-        <div className="flex justify-between items-center w-full p-4 pr-8 rounded-lg bg-white text-black">
+        <div className="flex justify-between items-center w-full p-4 pr-8 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100">
           <button
-            className="bg-slate-900 rounded-2xl text-white px-4 py-2 hover:bg-slate-800 cursor-pointer hover:scale-[1.02]"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white px-4 py-2 rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
             onClick={() => setMultiSelection((prev) => !prev)}
           >
             Multi Selection
@@ -45,7 +46,7 @@ const Accordion = () => {
                     ? handleMultiSelection(item.id)
                     : handleSingleSelection(item.id)
                 }
-                className="w-full p-4 rounded-lg bg-white text-black"
+                className="w-full p-4 rounded-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100"
                 key={item.id}
               >
                 {" "}
@@ -54,13 +55,13 @@ const Accordion = () => {
                   <span className="cursor-default">+</span>
                 </div>
                 {selected === item.id ? (
-                  <div className="w-full p-4 rounded-b-lg bg-white text-black border-t-2 border-slate-200">
+                  <div className="w-full p-4 rounded-b-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 border-t-2 border-gray-200 dark:border-slate-600">
                     {item.answer}
                   </div>
                 ) : null}
                 {multiSelection ? (
                   multiSelected.includes(item.id) ? (
-                    <div className="w-full p-4 rounded-b-lg bg-white text-black border-t-2 border-slate-200">
+                    <div className="w-full p-4 rounded-b-lg bg-white dark:bg-slate-800 text-gray-900 dark:text-gray-100 border-t-2 border-gray-200 dark:border-slate-600">
                       {item.answer}
                     </div>
                   ) : null
