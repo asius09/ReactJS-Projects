@@ -14,7 +14,7 @@ const BgChanger = () => {
     { id: 6, color: "#e879f9", text: "RANDOM HEX", textColor: "text-white" }, // Tailwind pink-400
     { id: 7, color: "#6ee7b7", text: "RANDOM RGB", textColor: "text-black" }, // Tailwind teal-300
     { id: 8, color: "#475569", text: "DARK GREY", textColor: "text-white" }, // Tailwind slate-700
-    { id: 9, color: "#cbd5e0", text: "LIGHT GREY", textColor: "text-black" }, // Tailwind slate-300
+    { id: 9, color: "#f3f4f6", text: "LIGHT GREY", textColor: "text-black" }, // Tailwind slate-100
   ];
 
   const randomRGB = () => {
@@ -97,7 +97,7 @@ const BgChanger = () => {
               } else if (item.text === "RANDOM RGB") {
                 randomRGB();
               } else if (item.text === "DARK GREY") {
-                setBgColor("#334155"); // Dark grey for dark mode (tailwind slate-700)
+                setBgColor("#475569"); // Dark grey for dark mode (tailwind slate-700)
                 setColorText("");
               } else if (item.text === "LIGHT GREY") {
                 setBgColor("#f3f4f6"); // Light grey for light mode (tailwind gray-100)

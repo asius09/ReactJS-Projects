@@ -9,10 +9,11 @@ import {
   Sidebar,
   QrGenerator,
   Navbar,
+  TabsContainer,
 } from "./components";
 
 function App() {
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(true);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
 
   return (
     <main
@@ -36,6 +37,7 @@ function App() {
           <LoadMore />
           <QuoteMachine />
           <QrGenerator />
+          <TabsContainer />
         </section>
       </div>
     </main>

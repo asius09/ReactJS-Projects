@@ -7,6 +7,8 @@ import QuoteMachine from "./Quotes/QuoteMachine";
 import Sidebar from "./Sidebar/Sidebar";
 import QrGenerator from "./QR Generator/QrGenerator";
 import Navbar from "./Navbar/Navbar";
+import ScrollIndicator from "./ScrollIndicator/ScrollIndicator";
+import TabsContainer from "./CustomTabs/TabsContainer";
 export {
   Accordion,
   BgChanger,
@@ -17,4 +19,6 @@ export {
   Sidebar,
   QrGenerator,
   Navbar,
+  ScrollIndicator,
+  TabsContainer,
 };

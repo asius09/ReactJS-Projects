@@ -39,16 +39,16 @@ const ImageSlider = () => {
       className="w-full h-screen object-cover overflow-x-hidden relative bg-gray-100 dark:bg-slate-950"
     >
       <div
-        className="w-[40px] h-[40px] bg-white dark:bg-slate-800 absolute z-100 rounded-full left-10 top-1/2 -translate-y-1/2 transition-all duration-200 hover:bg-gray-300 dark:hover:bg-slate-700 cursor-pointer grid place-items-center"
+        className="w-[40px] h-[40px] bg-gray-200 dark:bg-slate-700 absolute z-100 rounded-full left-10 top-1/2 -translate-y-1/2 transition-all duration-200 hover:bg-gray-300 dark:hover:bg-slate-600 cursor-pointer grid place-items-center"
         onClick={() => leftClick()}
       >
-        <i className="ri-arrow-left-line text-slate-800 dark:text-gray-300 hover:text-slate-900 dark:hover:text-gray-400 text-2xl"></i>
+        <i className="ri-arrow-left-line text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 text-2xl"></i>
       </div>
       <div
-        className="w-[40px] h-[40px] bg-white dark:bg-slate-800 absolute z-100 rounded-full right-10 top-1/2 -translate-y-1/2 transition-all duration-200 hover:bg-gray-300 dark:hover:bg-slate-700 cursor-pointer grid place-items-center"
+        className="w-[40px] h-[40px] bg-gray-200 dark:bg-slate-700 absolute z-100 rounded-full right-10 top-1/2 -translate-y-1/2 transition-all duration-200 hover:bg-gray-300 dark:hover:bg-slate-600 cursor-pointer grid place-items-center"
         onClick={() => rightClick()}
       >
-        <i className="ri-arrow-right-line text-slate-800 dark:text-gray-300 hover:text-slate-900 dark:hover:text-gray-400 text-2xl"></i>
+        <i className="ri-arrow-right-line text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 text-2xl"></i>
       </div>
 
       {data.map((item, index) => (
@@ -64,12 +64,12 @@ const ImageSlider = () => {
             {data.map((_, i) => (
               <div
                 key={i}
-                className="h-[15px] w-[15px] rounded-full bg-gray-400 dark:bg-gray-600 p-0.5 cursor-pointer shadow-md hover:shadow-lg transition-all duration-200"
+                className="h-[15px] w-[15px] rounded-full bg-gray-400 dark:bg-slate-600 p-0.5 cursor-pointer shadow-md hover:shadow-lg transition-all duration-200"
                 onClick={() => setActive(i)}
               >
                 <div
                   className={`w-full h-full rounded-full transition-colors ${
-                    i === active ? "bg-gray-700 dark:bg-gray-400 shadow-inner" : "bg-transparent"
+                    i === active ? "bg-gray-700 dark:bg-gray-300 shadow-inner" : "bg-transparent"
                   }`}
                 />
               </div>
