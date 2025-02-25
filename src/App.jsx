@@ -11,6 +11,7 @@ import {
   Navbar,
   TabsContainer,
   GithubSearch,
+  Game,
 } from "./components";
 
 function App() {
@@ -39,7 +40,8 @@ function App() {
           {/* <QuoteMachine /> */}
           <QrGenerator />
           <TabsContainer />
-          <GithubSearch />
+          {/* <GithubSearch /> */}
+          <Game />
         </section>
       </div>
     </main>

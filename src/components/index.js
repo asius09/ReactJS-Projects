@@ -10,6 +10,7 @@ import Navbar from "./Navbar/Navbar";
 import ScrollIndicator from "./ScrollIndicator/ScrollIndicator";
 import TabsContainer from "./CustomTabs/TabsContainer";
 import GithubSearch from "./FetchGitHubProfiles/GithubSearch";
+import Game from "./Tic Tac Toe/Game";
 export {
   Accordion,
   BgChanger,
@@ -23,4 +24,5 @@ export {
   ScrollIndicator,
   TabsContainer,
   GithubSearch,
+  Game,
 };
