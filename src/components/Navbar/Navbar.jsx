@@ -17,7 +17,7 @@ const Navbar = () => {
   }, [theme]);
 
   return (
-    <header className="bg-gray-50 dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 py-4 px-6 flex items-center justify-between fixed top-0 left-0 w-full z-50">
+    <header className="bg-gray-50 dark:bg-slate-900 border-b border-gray-200 dark:border-slate-700 py-4 px-6 flex items-center justify-between fixed top-0 left-0 w-full z-100">
       <div className="flex items-center justify-between w-full">
         <nav>
           <a

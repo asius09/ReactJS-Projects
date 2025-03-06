@@ -11,6 +11,8 @@ import ScrollIndicator from "./ScrollIndicator/ScrollIndicator";
 import TabsContainer from "./CustomTabs/TabsContainer";
 import GithubSearch from "./FetchGitHubProfiles/GithubSearch";
 import Game from "./Tic Tac Toe/Game";
+import Fetch from "./Fetch/Fetch";
+import DropDownContainer from "./HideShow/DropDownContaier";
 export {
   Accordion,
   BgChanger,
@@ -25,4 +27,6 @@ export {
   TabsContainer,
   GithubSearch,
   Game,
+  Fetch,
+  DropDownContainer,
 };

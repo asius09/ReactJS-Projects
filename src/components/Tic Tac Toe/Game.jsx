@@ -20,13 +20,13 @@ const Game = () => {
   const [user1, setUser1] = useLocalStorage("user1", {
     score: 0,
     login: "Player 1",
-    avatarStyle: "ri-gamepad-fill bg-red-500 text-white",
+    avatarStyle: "ri-gamepad-fill bg-gradient-to-r from-blue-500 to-purple-500 text-white",
     icon: "ri-close-fill",
   });
   const [user2, setUser2] = useLocalStorage("user2", {
     score: 0,
     login: "Player 2",
-    avatarStyle: "ri-game-fill bg-purple-500 text-white",
+    avatarStyle: "ri-game-fill bg-gradient-to-r from-purple-500 to-blue-500 text-white",
     icon: "ri-circle-line",
   });
   const [startGame, setStartGame] = useLocalStorage("startGame", false);
@@ -136,25 +136,25 @@ const Game = () => {
     }
   }, [board, checkWinner]);
 
-  const winningSquareStyle = "bg-green-400 shadow-lg border-4 border-green-500";
+  const winningSquareStyle = "bg-gradient-to-r from-blue-400 to-purple-400 shadow-lg border-4 border-purple-500";
   const normalSquareStyle =
-    "bg-white dark:bg-slate-700 hover:bg-gray-200 dark:hover:bg-slate-600";
+    "bg-white/90 dark:bg-slate-700/90 hover:bg-blue-50 dark:hover:bg-slate-600 backdrop-blur-sm";
   const crossClass = "ri-close-fill";
   const circleClass = "ri-circle-line";
   return (
     <div
       className={`relative flex flex-col items-center justify-center h-[calc(100vh-90px)] text-gray-900 dark:text-white rounded-lg transition-colors duration-300 ${
         startGame
-          ? "bg-gray-100 dark:bg-slate-900"
-          : "bg-gray-50 dark:bg-slate-800"
+          ? "bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-slate-900"
+          : "bg-gradient-to-br from-blue-50/50 to-purple-50/50 dark:from-gray-900/50 dark:to-slate-900/50"
       }`}
     >
       {(isDraw || showWinner) && (
         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center z-50 transition-opacity duration-500 ease-in-out animate-fade-in bg-transparent rounded-lg">
-          <div className="p-8 rounded-lg flex flex-col items-center justify-center transition-colors duration-300 scale-100 animate-bounce-in shadow-xl bg-gray-100 dark:bg-slate-800">
+          <div className="p-8 rounded-lg flex flex-col items-center justify-center transition-colors duration-300 scale-100 animate-bounce-in shadow-xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm border border-purple-100 dark:border-purple-900">
             {isDraw ? (
               <>
-                <h2 className="text-4xl font-extrabold text-gray-700 dark:text-gray-300 mb-4 animate-text-gradient">
+                <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4 animate-text-gradient">
                   Game Over!
                 </h2>
                 <p className="text-lg text-gray-500 dark:text-gray-400 text-center">
@@ -168,7 +168,7 @@ const Game = () => {
               </>
             ) : winner ? (
               <>
-                <h2 className="text-4xl font-extrabold text-gray-700 dark:text-gray-300 mb-4 animate-text-gradient">
+                <h2 className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400 bg-clip-text text-transparent mb-4 animate-text-gradient">
                   {`${winner.login} Wins!`}
                 </h2>
                 <p className="text-lg text-gray-500 dark:text-gray-400 text-center">
