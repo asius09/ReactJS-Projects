@@ -45,6 +45,7 @@ const Sidebar = ({ setIsSidebarExpanded }) => {
               path={data.path}
               children={data.children}
               isNavCollapsed={isCollapsed}
+              handleToggle={handleToggle}
             />
           ))}
       </ul>

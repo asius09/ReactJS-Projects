@@ -45,7 +45,9 @@ const MenuList = (props) => {
         <a
           href={path}
           className={`w-full ${
-            isNavCollapsed ? "flex justify-center" : "grid grid-cols-[10%_1fr] text-left gap-x-1.5"
+            isNavCollapsed
+              ? "flex justify-center"
+              : "grid grid-cols-[10%_1fr] text-left gap-x-1.5"
           }`}
         >
           <i
