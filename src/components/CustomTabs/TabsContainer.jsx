@@ -1,7 +1,7 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, forwardRef } from "react";
 import Tabs from "./Tabs";
 
-const TabsContainer = () => {
+const TabsContainer = forwardRef((props, ref) => {
   const [activeTab, setActiveTab] = useState(1);
 
   const tabsData = [
@@ -19,6 +19,7 @@ const TabsContainer = () => {
 
   return (
     <section
+      ref={ref}
       id="tab-container"
       className="w-full h-[calc(100vh-90px)] bg-gray-50 dark:bg-slate-800 rounded-lg shadow-md p-4 flex flex-col"
     >
@@ -46,6 +47,6 @@ const TabsContainer = () => {
       </div>
     </section>
   );
-};
+});
 
 export default TabsContainer;

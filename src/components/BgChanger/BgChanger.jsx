@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, forwardRef } from "react";
 
-const BgChanger = () => {
+const BgChanger = forwardRef((props, ref) => {
   const [bgColor, setBgColor] = useState("#f3f4f6"); // Default light mode background (tailwind gray-100)
   const [display, setDisplay] = useState(false);
   const [hexCode, setHexCode] = useState("");
@@ -43,6 +43,7 @@ const BgChanger = () => {
     <div
       className={`relative w-full h-screen text-gray-900 dark:text-white rounded-xl transition-colors duration-300`}
       style={{ backgroundColor: bgColor }}
+      ref={ref}
     >
       {/* input box for hexcode */}
       <div
@@ -115,6 +116,6 @@ const BgChanger = () => {
       </div>
     </div>
   );
-};
+});
 
 export default BgChanger;

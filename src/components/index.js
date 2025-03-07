@@ -13,6 +13,7 @@ import GithubSearch from "./FetchGitHubProfiles/GithubSearch";
 import Game from "./Tic Tac Toe/Game";
 import Fetch from "./Fetch/Fetch";
 import DropDownContainer from "./HideShow/DropDownContaier";
+import ScrollToSection from "./ScrollToSection";
 export {
   Accordion,
   BgChanger,
@@ -29,4 +30,5 @@ export {
   Game,
   Fetch,
   DropDownContainer,
+  ScrollToSection,
 };
